@@ -1,0 +1,31 @@
+--ISNULL Function
+select ISNULL(PreviousStatus,'No Date') as PreviousStatus  from Projects 
+
+--COALESCE Function
+select COALESCE(PreviousStatus,'No Date')as PreviousStatus  from Projects
+
+--Case When Syntax
+select Case When PreviousStatus is Null then 'No Date' Else PreviousStatus End ,Case When PreviousStatus is Null then 'No Date' Else PreviousStatus End from Projects
+
+--inner join 
+select * from Projects join Estimates on Projects.ID=Estimates.ProjectID
+
+--Create and ALter Function
+
+Alter function GetEstimatesByProjectID(@ProjectId bigint)
+returns table
+as 
+Return (
+    Select * from Estimates where ProjectID=@ProjectId
+)
+GO
+
+--Cross Apply and Outer Apply
+
+select * from  Projects  Outer Apply GetEstimatesByProjectID(Projects.ID) 
+select * from  Projects  Cross Apply GetEstimatesByProjectID(Projects.ID)
+
+
+
+--TO see Function defination
+sp_helptext GetEstimatesByProjectID
