@@ -8,6 +8,21 @@ Create Table #mytable (Id int, Name varchar(20))
 --Drop  Temp Table 
 Drop Table #mytable
 
+--Temp Table with stored procedure
+Create Procedure sp_proccreatetable
+as
+Create Table #mytable1 (Id int, Name varchar(20)) 
+
+Insert into #mytable1 values(1,'rob')
+
+Insert into #mytable1 values(2,'micky')
+
+Insert into #mytable1 values(3,'john')
+
+select * from #mytable1
+Go
+
+exec sp_proccreatetable
 
 --Create Global Temp Table
 Create Table ##mytable (Id int, Name varchar(20)) 
