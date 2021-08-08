@@ -1,0 +1,15 @@
+select name from tempdb..Sysobjects
+where name like '#mytable1%'
+
+
+--Create Temp Table
+Create Table #mytable (Id int, Name varchar(20)) 
+
+--Drop  Temp Table 
+Drop Table #mytable
+
+
+--Create Global Temp Table
+Create Table ##mytable (Id int, Name varchar(20)) 
+
+select * from ##mytable
